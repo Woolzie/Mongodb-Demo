@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { data } from "../lib/data.ts";
 
 interface InputProps {
@@ -13,14 +13,26 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
     const db = "db.students.";
     const regex_db = new RegExp(db);
     const [input, setInput] = useState(data[0].query.replace(regex_db, ""));
-    const [isClicked, setClicked] = useState("");
+    const [isClicked, setClicked] = useState("0");
+    const inputRef = useRef(null);
 
+    useEffect(() => {
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.key === "i" && document.activeElement !== inputRef.current) {
+                e.preventDefault();
+                inputRef.current?.focus();
+            }
+        };
+        window.addEventListener("keydown", handleKeyPress);
+    });
     useEffect(() => {
         async function runCommand() {
             const res = await fetch("http://localhost:3000/data", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ data: cmd }),
+                body: JSON.stringify({
+                    data: `JSON.stringify(${cmd}.toArray())`,
+                }),
             });
             const { output } = await res.json();
 
@@ -49,29 +61,30 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
     // replace heart with leaf
     return (
         <>
-            <div className="  w-fit border-4 border-green-500 m-[3rem] flex flex-row text-[2rem] rounded-xl ">
+            <div className="flex flex-row bg-green-500 w-fit m-2 text-xl rounded-xl p-1 lg:mb-4 lg:mb-6 lg:mt-6 lg:text-[1.8rem]">
                 <form onSubmit={submit}>
                     <input
                         type="text"
                         name="cmd"
+                        ref={inputRef}
                         onChange={change}
                         value={input}
                         autoComplete="off"
-                        className="bg-white  h-[3.5rem] resize-x overflow-x-auto w-[42vw] rounded-xl pl-2"
+                        className="bg-white resize-x overflow-x-auto w-[45vw] rounded-xl pl-2 h-13"
                     />
                     <button
-                        className="text-white px-4 bg-green-500  h-full   hover:text-lime-100"
+                        className="text-white  bg-green-500 h-full hover:text-lime-100  px-4"
                         type="submit"
                     >
                         ☘︎
                     </button>
                 </form>
             </div>
-            <div className=" w-[47vw] flex gap-4 flex-row flex-wrap ml-[4rem]">
+            <div className="flex w-[47vw] flex-row flex-wrap ml-4 gap-2">
                 {data.map((ex, index) => (
                     <button
                         // please fix radius
-                        className="bg-white   p-4 text-4 rounded-xl border-stone-800 border-2  hover:bg-lime-500 hover:text-white hover:border-white"
+                        className="bg-white rounded-xl border-stone-800 hover:bg-lime-500 hover:text-white hover:border-white p-1 text-2 border-2 lg:p-2 text-4 "
                         key={crypto.randomUUID()}
                         id={index.toString()}
                         type="button"

@@ -1,63 +1,99 @@
 :root {
-    --f-height: 1.85rem;
-    --f-shadow-height: 2rem;
-    --f-flag-offset: 0.2rem;
-    --f-col: #fff;
-    --text-size: calc(1em + 1vw);
+	/* greatest value, beyond 2xl*/
+	--flag-height: 1.4rem;
+	--border-value: 0.7rem;
+	--flag-border-height: 1.6rem;
+	--offset-width: 1.3rem;
+	--offset-height: 3.9;
+	/*TODO: add the colors as var as well*/
 }
 
-.inverse {
-    width: 0;
-    height: 0;
-    border-left: var(--f-height) solid #fff;
-    border-bottom: var(--f-height) solid #fff;
-    border-right: var(--f-height) solid transparent;
-    border-top: var(--f-height) solid transparent;
-    transform: rotate(90deg);
+/* smaller and eq to 2xl */
+@media (max-width: 1536px) {
+	:root {
+		--flag-height: 1.25rem;
+		--flag-border-height: 1.5rem;
+		--offset-width: 1rem;
+		--border-value: 0.7rem;
+		--offset-height: 4;
+	}
 }
 
-.flag {
-    position: relative;
-    margin: 0px;
-    margin-top: var(--f-flag-offset);
+/* smaller and eq to xl */
+@media (max-width: 1280px) {
+	:root {
+		--flag-height: 1.25rem;
+		--flag-border-height: 1.5rem;
+		--offset-width: 0.8rem;
+		--border-value: 0.55rem;
+		--offset-height: 4;
+	}
 }
 
-.flagshadow {
-    position: absolute;
-    margin: 0px;
+/* smaller and eq lg */
+@media (max-width: 1024px) {
+	:root {
+		--flag-height: 1.35rem;
+		--border-value: 0.5rem;
+		--flag-border-height: 1.5rem;
+		--offset-width: 1rem;
+		--offset-height: 4;
+	}
 }
 
-.sinverse {
-    border-left: calc(1.2 * var(--f-shadow-height)) solid #000;
-    border-bottom: calc(1.2 * var(--f-shadow-height)) solid #000;
-    border-right: calc(1.2 * var(--f-shadow-height)) solid transparent;
-    border-top: calc(1.2 * var(--f-shadow-height)) solid transparent;
-    transform: rotate(90deg);
+@media (max-width: 768px) {
+	:root {
+		--flag-height: 1.35rem;
+		--border-value: 0.5rem;
+		--flag-border-height: 1.5rem;
+		--offset-width: 1rem;
+		--offset-height: 4;
+	}
 }
 
-.aesthetic {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    max-width: 50vw;
+.white-down-flag {
+	position: absolute;
+	bottom: var(--border-value);
+	size: 0;
+	border-left: var(--flag-height) solid white;
+	border-bottom: var(--flag-height) solid white;
+	border-top: var(--flag-height) solid transparent;
+	border-right: var(--flag-height) solid transparent;
+	z-index: 10;
 }
 
-.triangle {
-    position: relative;
-    border-left: var(--f-height) solid #fff;
-    border-bottom: var(--f-height) solid #fff;
-    border-right: var(--f-height) solid transparent;
-    border-top: var(--f-height) solid transparent;
-    bottom: 0.27rem;
-    /* change this if it acts weird */
+.white-up-flag {
+	position: absolute;
+	top: var(--border-value);
+	size: 0;
+	border-left: var(--flag-height) solid white;
+	border-top: var(--flag-height) solid white;
+	border-bottom: var(--flag-height) solid transparent;
+	border-right: var(--flag-height) solid transparent;
+	z-index: 10;
 }
 
-.striangle {
-    position: absolute;
-    top: calc(1.62 * var(--f-shadow-height));
-    border-left: calc(1.2 * var(--f-shadow-height)) solid #000;
-    border-bottom: calc(1.2 * var(--f-shadow-height)) solid #000;
-    border-right: calc(1.2 * var(--f-shadow-height)) solid transparent;
-    border-top: calc(1.2 * var(--f-shadow-height)) solid transparent;
+.black-up-flag {
+	size: 0;
+	border-left: var(--flag-border-height) solid black;
+	border-top: var(--flag-border-height) solid black;
+	border-bottom: var(--flag-border-height) solid transparent;
+	border-right: var(--flag-border-height) solid transparent;
+	z-index: 5;
+}
+
+.black-down-flag {
+	size: 0;
+	border-left: var(--flag-border-height) solid black;
+	border-bottom: var(--flag-border-height) solid black;
+	border-top: var(--flag-border-height) solid transparent;
+	border-right: var(--flag-border-height) solid transparent;
+	z-index: 5;
+}
+
+.flag-offset {
+	z-index: 5;
+	background-color: black;
+	height: calc(var(--offset-height) * var(--flag-border-height));
+	width: var(--offset-width);
 }

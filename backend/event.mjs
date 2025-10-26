@@ -4,13 +4,9 @@ import { EventEmitter } from "node:events";
 const outputEvent = new EventEmitter();
 
 const dbName = "demo";
-const mongo = spawn(
-    "mongosh",
-    [
-        `mongodb://localhost:27017/${dbName}`,
-    ],
-    { stdio: ["pipe", "pipe", "pipe"] },
-);
+const mongo = spawn("mongosh", [`mongodb://localhost:27017/${dbName}`], {
+    stdio: ["pipe", "pipe", "pipe"],
+});
 
 mongo.stderr.on("data", (data) => {
     console.error(data.toString());

@@ -10,8 +10,17 @@ function App() {
     const [output, setOutput] = useState("");
     const [topic, setTopic] = useState(0);
     useEffect(() => {
-        window.focus();
-    });
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === "f") {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyPress);
+        return () => window.removeEventListener("keydown", handleKeyPress);
+    }, []);
     return (
         <div className="w-screen h-screen">
             <Output output={output} cmd={cmd} />
