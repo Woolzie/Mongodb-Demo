@@ -9,24 +9,16 @@ app.use(express.json());
 app.use(
     cors({
         origin: (origin, callback) => {
-            if (!origin) return callback(null, true); // allow Postman, curl, etc.
-
-            // Check if origin matches localhost (any port)
+            if (!origin) return callback(null, true);
             if (/^http:\/\/localhost:\d+$/.test(origin)) {
-                callback(null, true); // allow
+                callback(null, true);
             } else {
                 callback(new Error("Not allowed by CORS"));
             }
         },
-        credentials: true, // allow cookies/auth headers if needed
+        credentials: true,
     }),
 );
-app.get("/*name", (req, res) => {
-    //wtf it doesnt even show name tho?
-    const url = `${req.originalUrl}`.slice(1).replaceAll("%20", " ");
-    console.log(`the url is ${url}`);
-    res.send(`<p>${url}</p>`);
-});
 
 //TODO: combine run and output into a promise
 app.post("/data", (req, res) => {

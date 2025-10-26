@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+    position: relative;
+    background-color: #e4ffe6;
+}
