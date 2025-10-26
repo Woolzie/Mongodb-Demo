@@ -10,7 +10,9 @@ interface InputProps {
 //TODO: make the input box responsive
 
 const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
-    const [input, setInput] = useState("");
+    const db = "db.students.";
+    const regex_db = new RegExp(db);
+    const [input, setInput] = useState(data[0].query.replace(regex_db, ""));
     const [isClicked, setClicked] = useState("");
 
     useEffect(() => {
@@ -31,13 +33,13 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
 
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setCmd(input); //should run the command
+        setCmd(`${db}${input}`); //should run the command
     };
     const click = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setCmd(e.currentTarget.value);
         setClicked(e.currentTarget.id);
-        setInput(e.currentTarget.value);
+        setInput(e.currentTarget.value.replace(regex_db, ""));
         setTopic(Number(e.currentTarget.getAttribute("index")) || 0);
     };
     const change = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +56,7 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
                         name="cmd"
                         onChange={change}
                         value={input}
+                        autoComplete="off"
                         className="bg-white  h-[3.5rem] resize-x overflow-x-auto w-[42vw] rounded-xl pl-2"
                     />
                     <button
@@ -64,11 +67,11 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
                     </button>
                 </form>
             </div>
-            <div className="flex flex-col ml-[4rem] gap-4 max-h-[35vh]">
+            <div className=" w-[47vw] flex gap-4 flex-row flex-wrap ml-[4rem]">
                 {data.map((ex, index) => (
                     <button
                         // please fix radius
-                        className="bg-white  w-fit p-4  text-xl rounded-xl border-stone-800 border-2  hover:bg-lime-500 hover:text-white hover:border-white"
+                        className="bg-white   p-4 text-4 rounded-xl border-stone-800 border-2  hover:bg-lime-500 hover:text-white hover:border-white"
                         key={crypto.randomUUID()}
                         id={index.toString()}
                         type="button"
@@ -76,12 +79,12 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
                         value={ex.query}
                         index={index}
                         style={{
-                            backgroundColor: (isClicked === index.toString())
+                            backgroundColor: isClicked === index.toString()
                                 ? "oklch(69.6% 0.17 162.48)"
                                 : "",
                         }}
                     >
-                        {ex.query}
+                        {ex.brief}
                     </button>
                 ))}
             </div>

@@ -3,6 +3,7 @@
     --f-shadow-height: 2rem;
     --f-flag-offset: 0.2rem;
     --f-col: #fff;
+    --text-size: calc(1em + 1vw);
 }
 
 .inverse {

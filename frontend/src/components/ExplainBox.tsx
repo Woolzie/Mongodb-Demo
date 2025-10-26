@@ -5,11 +5,9 @@ interface ExplainBoxProps {
 }
 const ExplainBox = ({ topic }: ExplainBoxProps) => {
     return (
-        <>
-            <div className=" text-3xl absolute bottom-8 m-5 bg-white p-6 max-w-[50vw] border-16 text-pretty border-yellow-100">
-                {data[topic].explanation}
-            </div>
-        </>
+        <div className="  absolute bottom-0 m-5 bg-white p-6 max-w-[50vw] overflow-y-scroll border-16 text-pretty border-yellow-500 font-bold max-h-[40vh] xl:text-2xl 2xl:text-4xl">
+            {data[topic].explanation}
+        </div>
     );
 };
 

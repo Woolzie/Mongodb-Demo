@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import { data } from "../lib/data.ts";
 import ExplainBox from "./ExplainBox.tsx";
 import Header from "./Header.tsx";
 import Input from "./Input.tsx";
 import Output from "./Output.tsx";
 
 function App() {
-    const [cmd, setCmd] = useState("");
+    const [cmd, setCmd] = useState(data[0].query);
     const [output, setOutput] = useState("");
     const [topic, setTopic] = useState(0);
     useEffect(() => {
