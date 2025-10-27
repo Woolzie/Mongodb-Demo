@@ -61,7 +61,7 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
     // replace heart with leaf
     return (
         <>
-            <div className="flex flex-row bg-green-500 w-fit m-2 text-xl rounded-xl p-1 lg:mb-4 lg:mb-6 lg:mt-6 lg:text-[1.8rem]">
+            <div className="flex flex-row bg-green-500 w-fit m-2 text-xl rounded-xl p-1 lg:mb-6 lg:mt-6 lg:text-[1.8rem] xl:text-4xl xl:mb-8 ">
                 <form onSubmit={submit}>
                     <input
                         type="text"
@@ -70,7 +70,7 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
                         onChange={change}
                         value={input}
                         autoComplete="off"
-                        className="bg-white resize-x overflow-x-auto w-[45vw] rounded-xl pl-2 h-13"
+                        className="bg-white resize-x overflow-x-auto w-[45vw] rounded-xl pl-2 h-13 xl:p"
                     />
                     <button
                         className="text-white  bg-green-500 h-full hover:text-lime-100  px-4"
@@ -84,7 +84,7 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
                 {data.map((ex, index) => (
                     <button
                         // please fix radius
-                        className="bg-white rounded-xl border-stone-800 hover:bg-lime-500 hover:text-white hover:border-white p-1 text-2 border-2 lg:p-2 text-4 "
+                        className="bg-white rounded-xl border-stone-800 hover:bg-lime-500 hover:text-white hover:border-white p-1 text-2 border-2  text-4  lg:p-2 xl:p-3 xl:text-8"
                         key={crypto.randomUUID()}
                         id={index.toString()}
                         type="button"

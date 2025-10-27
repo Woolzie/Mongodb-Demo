@@ -3,4 +3,5 @@
 body {
     position: relative;
     background-color: #e4ffe6;
+    overflow-y: hidden;
 }
