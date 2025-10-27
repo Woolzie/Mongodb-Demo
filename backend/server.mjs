@@ -10,7 +10,7 @@ app.use(
     cors({
         origin: (origin, callback) => {
             if (!origin) return callback(null, true);
-            if (/^http:\/\/localhost:\d+$/.test(origin)) {
+            if (/^http:\/\/localhost:/.test(origin)) {
                 callback(null, true);
             } else {
                 callback(new Error("Not allowed by CORS"));

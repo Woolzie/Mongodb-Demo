@@ -7,7 +7,6 @@ interface InputProps {
     setOutput: React.Dispatch<React.SetStateAction<string>>;
     setTopic: React.Dispatch<React.SetStateAction<number>>;
 }
-//TODO: make the input box responsive
 
 const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
     const db = "db.students.";
@@ -58,7 +57,6 @@ const Input = ({ cmd, setCmd, setOutput, setTopic }: InputProps) => {
         e.preventDefault();
         setInput(e.currentTarget.value);
     };
-    // replace heart with leaf
     return (
         <>
             <div className="flex flex-row bg-green-500 w-fit m-2 text-xl rounded-xl p-1 lg:mb-6 lg:mt-6 lg:text-[1.8rem] xl:text-4xl xl:mb-8 ">
