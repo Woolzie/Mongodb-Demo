@@ -8,4 +8,6 @@
 
 # Steps to run
 1. navigate to frontend and run `npm install` and then `npm run dev`
-2. navigate to backend (in a different terminal) and run `npm install` followed by `npm run dev`S
+2. navigate to backend (in a different terminal) and run `npm install` followed by `npm run dev`
+
+<img width="1856" height="1006" alt="image" src="https://github.com/user-attachments/assets/282da8f6-cf1a-42e3-837c-3b3c9d8d0727" />
